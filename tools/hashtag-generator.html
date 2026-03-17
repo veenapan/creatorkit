@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Instagram Hashtag Generator — CreatorKit</title>
+  <meta name="description" content="Get a smart mix of small, medium, and large Instagram hashtags tailored to your niche. Free, instant.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="logo">creator<span>kit</span></a>
+      <div class="nav-links">
+        <a href="../index.html#tools">All Tools</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../pricing.html" class="btn-nav">Go Pro — $15/mo</a>
+      </div>
+    </div>
+  </nav>
+  <main class="tool-page">
+    <div class="container">
+      <div class="tool-page-header">
+        <a href="../index.html" class="back-link">← All tools</a>
+        <h1>Smart Hashtag Finder</h1>
+        <p>Get a perfectly balanced hashtag set — small, medium, and large — tailored to your exact post and niche.</p>
+      </div>
+      <div class="tool-ui">
+        <div class="tool-input-panel">
+          <div class="panel-label">Your post details</div>
+          <div class="field">
+            <label for="postDesc">What's your post about?</label>
+            <textarea id="postDesc" placeholder="e.g. A flat lay of my morning skincare routine featuring SPF and vitamin C serum..."></textarea>
+          </div>
+          <div class="field">
+            <label for="niche">Your niche</label>
+            <select id="niche">              <option value="lifestyle">Lifestyle</option>
+              <option value="fitness">Fitness &amp; wellness</option>
+              <option value="fashion">Fashion &amp; style</option>
+              <option value="food">Food &amp; cooking</option>
+              <option value="travel">Travel</option>
+              <option value="beauty">Beauty &amp; skincare</option>
+              <option value="business">Business &amp; entrepreneurship</option>
+              <option value="tech">Tech &amp; gadgets</option>
+              <option value="parenting">Parenting &amp; family</option>
+              <option value="mental health">Mental health &amp; self-care</option>
+              <option value="finance">Personal finance</option>
+              <option value="photography">Photography</option></select>
+          </div>
+          <div class="field">
+            <label for="count">How many hashtags?</label>
+            <select id="count">
+              <option value="15">15 hashtags</option>
+              <option value="20">20 hashtags</option>
+              <option value="30" selected>30 hashtags (recommended)</option>
+            </select>
+          </div>
+                    <div class="uses-counter" id="usesCounter">Loading...</div>
+          <button class="btn-generate" id="generateBtn" onclick="generate()">Find hashtags</button>
+          <div class="limit-banner" id="limitBanner">
+            You've used all 3 free generations today. <a href="../pricing.html">Upgrade to Pro</a> for unlimited use.
+          </div>
+        </div>
+        <div class="tool-output-panel">
+          <div class="panel-label">Your hashtags</div>
+          <div id="outputArea">
+            <div class="output-empty">
+              <div class="output-icon">#</div>
+              <p>Your hashtag sets will appear here,<br>organised by size for maximum reach.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+            <div class="next-tools">
+        <h3>Try these next</h3>
+        <div class="next-tools-grid">
+        <a href="caption-generator.html" class="next-tool-link"><span class="nt-icon">✍️</span> Caption Generator</a>
+        <a href="hook-writer.html" class="next-tool-link"><span class="nt-icon">⚡</span> Hook Writer</a>
+        <a href="content-ideas.html" class="next-tool-link"><span class="nt-icon">💡</span> Content Ideas</a>
+        <a href="post-analyzer.html" class="next-tool-link"><span class="nt-icon">🔎</span> Post Analyzer</a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <a href="../index.html" class="logo">creator<span>kit</span></a>
+        <div class="footer-links">
+          <a href="../index.html#tools">Tools</a>
+          <a href="../pricing.html">Pricing</a>
+        </div>
+        <span class="footer-copy">Built for creators.</span>
+      </div>
+    </div>
+  </footer>
+  <script src="../js/main.js"></script>
+  <script>
+    var TOOL_NAME = 'hashtag-finder';
+    document.addEventListener('DOMContentLoaded', function() {
+      CreatorKit.updateUsesDisplay(TOOL_NAME); checkLimit();
+    });
+        function checkLimit() {
+      var btn = document.getElementById('generateBtn');
+      var banner = document.getElementById('limitBanner');
+      if (!CreatorKit.isPro() && CreatorKit.getUsesLeft(TOOL_NAME) === 0) {
+        btn.disabled = true; banner.style.display = 'block';
+      }
+    }
+    async function generate() {
+      var postDesc = document.getElementById('postDesc').value.trim();
+      if (!postDesc) { alert('Please describe your post first.'); return; }
+      var niche = document.getElementById('niche').value;
+      var count = document.getElementById('count').value;
+      var btn = document.getElementById('generateBtn');
+      var outputArea = document.getElementById('outputArea');
+      btn.disabled = true; btn.textContent = 'Finding hashtags...';
+      outputArea.innerHTML = '<div class="loading-bar"></div>';
+      var prompt = 'Generate exactly ' + count + ' Instagram hashtags for a post in the ' + niche + ' niche.\nPost: ' + postDesc + '\n\nDivide into 3 groups:\n- SMALL (under 100K posts) — 30%\n- MEDIUM (100K-500K posts) — 40%\n- LARGE (500K+ posts) — 30%\n\nFormat EXACTLY like this:\n\nSMALL\n#tag1 #tag2 ...\n\nMEDIUM\n#tag1 #tag2 ...\n\nLARGE\n#tag1 #tag2 ...\n\nCOPY ALL\n#tag1 #tag2 ... [all on one line]';
+      try {
+        var result = await CreatorKit.callAI(prompt);
+        if (!CreatorKit.isPro()) { CreatorKit.recordUse(TOOL_NAME); CreatorKit.updateUsesDisplay(TOOL_NAME); }
+        outputArea.innerHTML = '';
+        var sections = {SMALL:[], MEDIUM:[], LARGE:[]};
+        var current = null;
+        result.split('\n').forEach(function(line) {
+          var t = line.trim();
+          if (t==='SMALL'||t==='MEDIUM'||t==='LARGE') { current=t; }
+          else if (current && t && t!=='COPY ALL') {
+            var tags = t.match(/#\w+/g); if(tags) sections[current].push(...tags);
+          }
+        });
+        var colors = {SMALL:'#059669', MEDIUM:'#0891b2', LARGE:'#7c3aed'};
+        var labels = {SMALL:'Small (< 100K) — easier to rank', MEDIUM:'Medium (100K–500K) — balanced', LARGE:'Large (500K+) — broad reach'};
+        var i=0;
+        ['SMALL','MEDIUM','LARGE'].forEach(function(size) {
+          if (!sections[size].length) return;
+          var d = document.createElement('div'); d.className='result-item'; d.style.animationDelay=(i*0.07)+'s'; i++;
+          var allTags = sections[size].join(' ');
+          d.innerHTML = '<div class="result-label" style="color:'+colors[size]+'">'+labels[size]+'</div><div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px">'+sections[size].map(function(t){return '<span style="background:var(--cream);border:1px solid var(--border-med);border-radius:100px;padding:3px 10px;font-size:13px">'+t+'</span>';}).join('')+'</div><button class="copy-btn" onclick="CreatorKit.copyText(this.previousElementSibling.previousElementSibling.textContent.trim().replace(/\\s+/g,' '), this)">Copy</button>';
+          outputArea.appendChild(d);
+        });
+        var allTags = [...sections.SMALL,...sections.MEDIUM,...sections.LARGE].join(' ');
+        if (allTags) {
+          var d = document.createElement('div'); d.className='result-item'; d.style.animationDelay=(i*0.07)+'s';
+          d.innerHTML = '<div class="result-label">Copy all — paste into Instagram</div><div class="result-text" style="font-size:13px;color:var(--ink3)">'+allTags+'</div><button class="copy-btn" onclick="CreatorKit.copyText(this.previousElementSibling.textContent.trim(), this)">Copy all</button>';
+          outputArea.appendChild(d);
+        }
+      } catch(err) {
+        outputArea.innerHTML = '<div style="color:red;font-size:14px;padding:16px">Error: ' + err.message + '</div>';
+      } finally { btn.disabled=false; btn.textContent='Find hashtags'; checkLimit(); }
+    }
+  </script>
+</body>
+</html>

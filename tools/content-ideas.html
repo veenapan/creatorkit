@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instagram Content Idea Generator — CreatorKit</title>
+  <meta name="description" content="Get 30 days of Instagram post ideas for your niche instantly. Free AI content planning for creators.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="logo">creator<span>kit</span></a>
+      <div class="nav-links">
+        <a href="../index.html#tools">All Tools</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../pricing.html" class="btn-nav">Go Pro — $15/mo</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="tool-page">
+    <div class="container">
+      <div class="tool-page-header">
+        <a href="../index.html" class="back-link">← All tools</a>
+        <h1>Content Idea Generator</h1>
+        <p>Never stare at a blank screen again. Get a full month of post ideas tailored to your niche, audience, and goals.</p>
+      </div>
+      <div class="tool-ui">
+        <div class="tool-input-panel">
+          <div class="panel-label">Tell us about your account</div>
+          <div class="field">
+            <label for="niche">Your niche</label>
+            <select id="niche">
+              <option value="lifestyle">Lifestyle</option>
+              <option value="fitness & wellness">Fitness &amp; wellness</option>
+              <option value="fashion & style">Fashion &amp; style</option>
+              <option value="food & cooking">Food &amp; cooking</option>
+              <option value="travel">Travel</option>
+              <option value="beauty & skincare">Beauty &amp; skincare</option>
+              <option value="business & entrepreneurship">Business &amp; entrepreneurship</option>
+              <option value="tech & gadgets">Tech &amp; gadgets</option>
+              <option value="parenting & family">Parenting &amp; family</option>
+              <option value="mental health & self-care">Mental health &amp; self-care</option>
+              <option value="personal finance">Personal finance</option>
+              <option value="photography">Photography</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="audience">Who is your target audience?</label>
+            <input type="text" id="audience" placeholder="e.g. Women 25–35 interested in sustainable living">
+          </div>
+          <div class="field">
+            <label for="goal">Your main goal</label>
+            <select id="goal">
+              <option value="grow followers">Grow followers</option>
+              <option value="increase engagement">Increase engagement</option>
+              <option value="build personal brand">Build personal brand</option>
+              <option value="sell products or services">Sell products / services</option>
+              <option value="land brand deals">Land brand deals</option>
+              <option value="educate my audience">Educate my audience</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="avoid">Anything to avoid? (optional)</label>
+            <input type="text" id="avoid" placeholder="e.g. No political topics, no before/after posts">
+          </div>
+          <div class="uses-counter" id="usesCounter">Loading...</div>
+          <button class="btn-generate" id="generateBtn" onclick="generate()">Generate 30 ideas</button>
+          <div class="limit-banner" id="limitBanner">
+            You've used all 3 free generations today. <a href="../pricing.html">Upgrade to Pro</a> for unlimited use.
+          </div>
+        </div>
+        <div class="tool-output-panel">
+          <div class="panel-label">Your content ideas</div>
+          <div id="outputArea">
+            <div class="output-empty">
+              <div class="output-icon">💡</div>
+              <p>30 content ideas will appear here,<br>organized by content type.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="next-tools">
+        <h3>Try these next</h3>
+        <div class="next-tools-grid">
+          <a href="caption-generator.html" class="next-tool-link"><span class="nt-icon">✍️</span> Caption Generator</a>
+          <a href="hook-writer.html" class="next-tool-link"><span class="nt-icon">⚡</span> Hook Writer</a>
+          <a href="hashtag-generator.html" class="next-tool-link"><span class="nt-icon">#</span> Hashtag Finder</a>
+          <a href="carousel-writer.html" class="next-tool-link"><span class="nt-icon">🎠</span> Carousel Writer</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <a href="../index.html" class="logo">creator<span>kit</span></a>
+        <div class="footer-links"><a href="../index.html#tools">Tools</a><a href="../pricing.html">Pricing</a></div>
+        <span class="footer-copy">Built for creators.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    var TOOL_NAME = 'content-ideas';
+    document.addEventListener('DOMContentLoaded', function() { CreatorKit.updateUsesDisplay(TOOL_NAME); checkLimit(); });
+    function checkLimit() {
+      var btn = document.getElementById('generateBtn'), banner = document.getElementById('limitBanner');
+      if (!CreatorKit.isPro() && CreatorKit.getUsesLeft(TOOL_NAME) === 0) { btn.disabled = true; banner.style.display = 'block'; }
+    }
+    async function generate() {
+      var niche = document.getElementById('niche').value;
+      var audience = document.getElementById('audience').value.trim();
+      var goal = document.getElementById('goal').value;
+      var avoid = document.getElementById('avoid').value.trim();
+      var btn = document.getElementById('generateBtn'), outputArea = document.getElementById('outputArea');
+      btn.disabled = true; btn.textContent = 'Generating ideas...';
+      outputArea.innerHTML = '<div class="loading-bar"></div>';
+      var prompt = 'You are an expert Instagram content strategist.\n\nGenerate exactly 30 Instagram post ideas for a creator in the ' + niche + ' niche.\nTarget audience: ' + (audience || 'general ' + niche + ' enthusiasts') + '\nMain goal: ' + goal + '\n' + (avoid ? 'Avoid: ' + avoid + '\n' : '') + '\nOrganize into 5 categories of 6 ideas each:\n- EDUCATIONAL\n- PERSONAL\n- ENTERTAINING\n- ENGAGEMENT\n- PROMOTIONAL\n\nFor each idea write one clear sentence.\n\nFormat EXACTLY:\n\nEDUCATIONAL\n1. [idea]\n2. [idea]\n3. [idea]\n4. [idea]\n5. [idea]\n6. [idea]\n\nPERSONAL\n1. [idea]\n...(same for all 5 categories)';
+      try {
+        var result = await CreatorKit.callAI(prompt);
+        if (!CreatorKit.isPro()) { CreatorKit.recordUse(TOOL_NAME); CreatorKit.updateUsesDisplay(TOOL_NAME); }
+        outputArea.innerHTML = '';
+        var categories = ['EDUCATIONAL','PERSONAL','ENTERTAINING','ENGAGEMENT','PROMOTIONAL'];
+        var icons = {EDUCATIONAL:'📚',PERSONAL:'🙋',ENTERTAINING:'🎉',ENGAGEMENT:'💬',PROMOTIONAL:'✨'};
+        var colors = {EDUCATIONAL:'#0891b2',PERSONAL:'#e8440a',ENTERTAINING:'#059669',ENGAGEMENT:'#7c3aed',PROMOTIONAL:'#d97706'};
+        var sections = {}; categories.forEach(function(c) { sections[c] = []; });
+        var current = null;
+        result.split('\n').forEach(function(line) {
+          var t = line.trim();
+          if (categories.indexOf(t) > -1) { current = t; }
+          else if (current && /^\d+\./.test(t)) { sections[current].push(t.replace(/^\d+\.\s*/,'')); }
+        });
+        categories.forEach(function(cat, i) {
+          if (!sections[cat].length) return;
+          var d = document.createElement('div'); d.className = 'result-item'; d.style.animationDelay = (i*0.07)+'s';
+          var allText = sections[cat].map(function(idea,j){return (j+1)+'. '+idea;}).join('\n');
+          d.innerHTML = '<div class="result-label" style="color:'+colors[cat]+'">'+icons[cat]+' '+cat+'</div><ol style="padding-left:18px;margin-top:10px">'+sections[cat].map(function(idea){return '<li style="font-size:13px;color:var(--ink2);padding:4px 0;line-height:1.5">'+idea+'</li>';}).join('')+'</ol><button class="copy-btn" onclick="CreatorKit.copyText(this.previousElementSibling.innerText, this)">Copy</button>';
+          outputArea.appendChild(d);
+        });
+      } catch(err) {
+        outputArea.innerHTML = '<div style="color:red;font-size:14px;padding:16px">Error: ' + err.message + '</div>';
+      } finally { btn.disabled = false; btn.textContent = 'Generate 30 ideas'; checkLimit(); }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instagram Hook Writer — CreatorKit</title>
+  <meta name="description" content="Generate 10 scroll-stopping first lines for your Instagram posts. Free AI hook writer for creators.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="logo">creator<span>kit</span></a>
+      <div class="nav-links">
+        <a href="../index.html#tools">All Tools</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../pricing.html" class="btn-nav">Go Pro — $15/mo</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="tool-page">
+    <div class="container">
+      <div class="tool-page-header">
+        <a href="../index.html" class="back-link">← All tools</a>
+        <h1>Hook Writer</h1>
+        <p>The first line of your caption decides if people read the rest. Get 10 scroll-stopping hooks for your post — instantly.</p>
+      </div>
+      <div class="tool-ui">
+        <div class="tool-input-panel">
+          <div class="panel-label">Your post details</div>
+          <div class="field">
+            <label for="topic">What is your post about?</label>
+            <textarea id="topic" placeholder="e.g. How I grew from 0 to 10k followers in 90 days without posting every day..." rows="3"></textarea>
+          </div>
+          <div class="field">
+            <label for="niche">Your niche</label>
+            <select id="niche">
+              <option value="lifestyle">Lifestyle</option>
+              <option value="fitness">Fitness &amp; wellness</option>
+              <option value="fashion">Fashion &amp; style</option>
+              <option value="food">Food &amp; cooking</option>
+              <option value="travel">Travel</option>
+              <option value="beauty">Beauty &amp; skincare</option>
+              <option value="business">Business &amp; entrepreneurship</option>
+              <option value="tech">Tech &amp; gadgets</option>
+              <option value="parenting">Parenting &amp; family</option>
+              <option value="mental health">Mental health</option>
+              <option value="finance">Personal finance</option>
+              <option value="photography">Photography</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="style">Hook style</label>
+            <select id="style">
+              <option value="mixed (variety of styles)">Mixed — give me variety</option>
+              <option value="curiosity-driven">Curiosity-driven ("The secret to...")</option>
+              <option value="bold statement">Bold statement ("Nobody talks about this...")</option>
+              <option value="relatable">Relatable ("If you've ever...")</option>
+              <option value="story-led">Story-led ("Last year I...")</option>
+              <option value="list-based">List-based ("5 things...")</option>
+              <option value="question">Question ("What if you could...")</option>
+            </select>
+          </div>
+          <div class="uses-counter" id="usesCounter">Loading...</div>
+          <button class="btn-generate" id="generateBtn" onclick="generate()">Write 10 hooks</button>
+          <div class="limit-banner" id="limitBanner">
+            You've used all 3 free generations today. <a href="../pricing.html">Upgrade to Pro</a> for unlimited use.
+          </div>
+        </div>
+        <div class="tool-output-panel">
+          <div class="panel-label">Your hooks</div>
+          <div id="outputArea">
+            <div class="output-empty">
+              <div class="output-icon">⚡</div>
+              <p>10 scroll-stopping hooks will appear here.<br>Pick your favourite and build your caption around it.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="next-tools">
+        <h3>Try these next</h3>
+        <div class="next-tools-grid">
+          <a href="caption-generator.html" class="next-tool-link"><span class="nt-icon">✍️</span> Caption Generator</a>
+          <a href="hashtag-generator.html" class="next-tool-link"><span class="nt-icon">#</span> Hashtag Finder</a>
+          <a href="content-ideas.html" class="next-tool-link"><span class="nt-icon">💡</span> Content Ideas</a>
+          <a href="post-analyzer.html" class="next-tool-link"><span class="nt-icon">🔎</span> Post Analyzer</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <a href="../index.html" class="logo">creator<span>kit</span></a>
+        <div class="footer-links"><a href="../index.html#tools">Tools</a><a href="../pricing.html">Pricing</a></div>
+        <span class="footer-copy">Built for creators.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    var TOOL_NAME = 'hook-writer';
+    document.addEventListener('DOMContentLoaded', function() { CreatorKit.updateUsesDisplay(TOOL_NAME); checkLimit(); });
+    function checkLimit() {
+      var btn = document.getElementById('generateBtn'), banner = document.getElementById('limitBanner');
+      if (!CreatorKit.isPro() && CreatorKit.getUsesLeft(TOOL_NAME) === 0) { btn.disabled = true; banner.style.display = 'block'; }
+    }
+    async function generate() {
+      var topic = document.getElementById('topic').value.trim();
+      if (!topic) { alert('Please describe your post topic first.'); return; }
+      var niche = document.getElementById('niche').value;
+      var style = document.getElementById('style').value;
+      var btn = document.getElementById('generateBtn'), outputArea = document.getElementById('outputArea');
+      btn.disabled = true; btn.textContent = 'Writing hooks...';
+      outputArea.innerHTML = '<div class="loading-bar"></div>';
+      var prompt = 'You are a world-class Instagram copywriter specializing in scroll-stopping hooks.\n\nWrite exactly 10 different Instagram caption hooks for:\nTopic: ' + topic + '\nNiche: ' + niche + '\nStyle: ' + style + '\n\nRules:\n- Each hook is 1-2 lines max (under 20 words)\n- Each must make someone NEED to read more\n- Use different psychological triggers across the 10\n- No generic or cliché hooks\n\nFormat EXACTLY:\n\n1. [hook]\n2. [hook]\n3. [hook]\n4. [hook]\n5. [hook]\n6. [hook]\n7. [hook]\n8. [hook]\n9. [hook]\n10. [hook]';
+      try {
+        var result = await CreatorKit.callAI(prompt);
+        if (!CreatorKit.isPro()) { CreatorKit.recordUse(TOOL_NAME); CreatorKit.updateUsesDisplay(TOOL_NAME); }
+        outputArea.innerHTML = '';
+        var hooks = [];
+        result.split('\n').forEach(function(line) {
+          var m = line.trim().match(/^\d+\.\s+(.+)/);
+          if (m) hooks.push(m[1].trim());
+        });
+        if (!hooks.length) {
+          var d = document.createElement('div'); d.className = 'result-item';
+          d.innerHTML = '<div class="result-text">' + result + '</div>';
+          outputArea.appendChild(d); return;
+        }
+        hooks.forEach(function(hook, i) {
+          var d = document.createElement('div'); d.className = 'result-item'; d.style.animationDelay = (i*0.04)+'s';
+          d.innerHTML = '<div class="result-label">Hook ' + (i+1) + '</div><div class="result-text" style="font-size:15px;font-weight:500;line-height:1.5">' + hook + '</div><button class="copy-btn" onclick="CreatorKit.copyText(this.previousElementSibling.textContent, this)">Copy</button>';
+          outputArea.appendChild(d);
+        });
+      } catch(err) {
+        outputArea.innerHTML = '<div style="color:red;font-size:14px;padding:16px">Error: ' + err.message + '</div>';
+      } finally { btn.disabled = false; btn.textContent = 'Write 10 hooks'; checkLimit(); }
+    }
+  </script>
+</body>
+</html>

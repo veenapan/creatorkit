@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Instagram Caption Generator — CreatorKit</title>
+  <meta name="description" content="Generate 3 scroll-stopping Instagram captions with hooks for free. AI-powered, instant, no signup.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="logo">creator<span>kit</span></a>
+      <div class="nav-links">
+        <a href="../index.html#tools">All Tools</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../pricing.html" class="btn-nav">Go Pro — $15/mo</a>
+      </div>
+    </div>
+  </nav>
+  <main class="tool-page">
+    <div class="container">
+      <div class="tool-page-header">
+        <a href="../index.html" class="back-link">← All tools</a>
+        <div class="tool-tag">Most popular</div>
+        <h1>Caption + Hook Generator</h1>
+        <p>Describe your post and get 3 scroll-stopping captions — each with a hook that stops the scroll.</p>
+      </div>
+      <div class="tool-ui">
+        <div class="tool-input-panel">
+          <div class="panel-label">Your post details</div>
+          <div class="field">
+            <label for="postDesc">What's your post about?</label>
+            <textarea id="postDesc" placeholder="e.g. A photo of my morning coffee routine at my home office..." rows="4"></textarea>
+          </div>
+          <div class="field">
+            <label for="niche">Your niche</label>
+            <select id="niche">              <option value="lifestyle">Lifestyle</option>
+              <option value="fitness">Fitness &amp; wellness</option>
+              <option value="fashion">Fashion &amp; style</option>
+              <option value="food">Food &amp; cooking</option>
+              <option value="travel">Travel</option>
+              <option value="beauty">Beauty &amp; skincare</option>
+              <option value="business">Business &amp; entrepreneurship</option>
+              <option value="tech">Tech &amp; gadgets</option>
+              <option value="parenting">Parenting &amp; family</option>
+              <option value="mental health">Mental health &amp; self-care</option>
+              <option value="finance">Personal finance</option>
+              <option value="photography">Photography</option></select>
+          </div>
+          <div class="field">
+            <label for="tone">Caption tone</label>
+            <select id="tone">
+              <option value="authentic and conversational">Authentic &amp; conversational</option>
+              <option value="motivational and inspiring">Motivational &amp; inspiring</option>
+              <option value="witty and humorous">Witty &amp; humorous</option>
+              <option value="educational and informative">Educational &amp; informative</option>
+              <option value="vulnerable and personal">Vulnerable &amp; personal</option>
+              <option value="professional and polished">Professional &amp; polished</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="cta">Call to action (optional)</label>
+            <input type="text" id="cta" placeholder="e.g. Save this for later, Drop a ✨ below">
+          </div>
+                    <div class="uses-counter" id="usesCounter">Loading...</div>
+          <button class="btn-generate" id="generateBtn" onclick="generate()">Generate captions</button>
+          <div class="limit-banner" id="limitBanner">
+            You've used all 3 free generations today. <a href="../pricing.html">Upgrade to Pro</a> for unlimited use.
+          </div>
+        </div>
+        <div class="tool-output-panel">
+          <div class="panel-label">Your captions</div>
+          <div id="outputArea">
+            <div class="output-empty">
+              <div class="output-icon">✍️</div>
+              <p>Fill in your post details and hit generate.<br>3 captions will appear here instantly.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+            <div class="next-tools">
+        <h3>Try these next</h3>
+        <div class="next-tools-grid">
+        <a href="hashtag-generator.html" class="next-tool-link"><span class="nt-icon">#</span> Hashtag Finder</a>
+        <a href="hook-writer.html" class="next-tool-link"><span class="nt-icon">⚡</span> Hook Writer</a>
+        <a href="content-ideas.html" class="next-tool-link"><span class="nt-icon">💡</span> Content Ideas</a>
+        <a href="post-analyzer.html" class="next-tool-link"><span class="nt-icon">🔎</span> Post Analyzer</a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <a href="../index.html" class="logo">creator<span>kit</span></a>
+        <div class="footer-links">
+          <a href="../index.html#tools">Tools</a>
+          <a href="../pricing.html">Pricing</a>
+        </div>
+        <span class="footer-copy">Built for creators.</span>
+      </div>
+    </div>
+  </footer>
+  <script src="../js/main.js"></script>
+  <script>
+    var TOOL_NAME = 'caption-generator';
+    document.addEventListener('DOMContentLoaded', function() {
+      CreatorKit.updateUsesDisplay(TOOL_NAME); checkLimit();
+    });
+        function checkLimit() {
+      var btn = document.getElementById('generateBtn');
+      var banner = document.getElementById('limitBanner');
+      if (!CreatorKit.isPro() && CreatorKit.getUsesLeft(TOOL_NAME) === 0) {
+        btn.disabled = true; banner.style.display = 'block';
+      }
+    }
+    async function generate() {
+      var postDesc = document.getElementById('postDesc').value.trim();
+      if (!postDesc) { alert('Please describe your post first.'); return; }
+      var niche = document.getElementById('niche').value;
+      var tone = document.getElementById('tone').value;
+      var cta = document.getElementById('cta').value.trim();
+      var btn = document.getElementById('generateBtn');
+      var outputArea = document.getElementById('outputArea');
+      btn.disabled = true; btn.textContent = 'Generating...';
+      outputArea.innerHTML = '<div class="loading-bar"></div>';
+      var prompt = 'You are an expert Instagram content creator specializing in the ' + niche + ' niche.\n\nWrite exactly 3 Instagram captions for the following post. Each caption must:\n1. Start with a powerful hook (first line that stops the scroll)\n2. Be written in a ' + tone + ' tone\n3. Be between 100-200 words\n' + (cta ? '4. End with this call to action: "' + cta + '"\n' : '') + '\nPost description: ' + postDesc + '\n\nFormat EXACTLY like this:\n\nCAPTION 1\n[caption text]\n\nCAPTION 2\n[caption text]\n\nCAPTION 3\n[caption text]';
+      try {
+        var result = await CreatorKit.callAI(prompt);
+        if (!CreatorKit.isPro()) { CreatorKit.recordUse(TOOL_NAME); CreatorKit.updateUsesDisplay(TOOL_NAME); }
+        var parts = result.split(/CAPTION \d+/i).filter(function(p) { return p.trim(); });
+        outputArea.innerHTML = '';
+        parts.forEach(function(text, i) {
+          var d = document.createElement('div'); d.className = 'result-item'; d.style.animationDelay = (i*0.07)+'s';
+          d.innerHTML = '<div class="result-label">Caption ' + (i+1) + '</div><div class="result-text">' + text.trim() + '</div><button class="copy-btn" onclick="CreatorKit.copyText(this.previousElementSibling.textContent, this)">Copy</button>';
+          outputArea.appendChild(d);
+        });
+      } catch(err) {
+        outputArea.innerHTML = '<div style="color:red;font-size:14px;padding:16px">Error: ' + err.message + '</div>';
+      } finally { btn.disabled = false; btn.textContent = 'Generate captions'; checkLimit(); }
+    }
+  </script>
+</body>
+</html>

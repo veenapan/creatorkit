@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instagram Carousel Script Writer — CreatorKit Pro</title>
+  <meta name="description" content="Turn any topic into a compelling Instagram carousel script. Slide-by-slide, ready to design. CreatorKit Pro.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  <style>
+    .slide-card { background: var(--cream); border: 1px solid var(--border); border-radius: var(--r-sm); padding: 18px; margin-bottom: 10px; position: relative; animation: fadeUp 0.3s ease forwards; opacity: 0; }
+    .slide-num { display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:var(--accent);color:white;font-size:11px;font-weight:700;margin-right:8px;flex-shrink:0; }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="logo">creator<span>kit</span></a>
+      <div class="nav-links">
+        <a href="../index.html#tools">All Tools</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../pricing.html" class="btn-nav">Go Pro — $15/mo</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="tool-page">
+    <div class="container">
+      <div class="tool-page-header">
+        <a href="../index.html" class="back-link">← All tools</a>
+        <div class="tool-tag pro">Pro tool</div>
+        <h1>Carousel Script Writer</h1>
+        <p>Carousels get 3× more reach than single images. Get a complete slide-by-slide script for any topic — ready to design in Canva or Figma.</p>
+      </div>
+
+      <div id="proGate" style="display:none;background:var(--pro-light);border:1px solid rgba(124,58,237,0.2);border-radius:var(--r);padding:40px;text-align:center;margin-bottom:32px">
+        <div style="font-size:40px;margin-bottom:12px">🎠</div>
+        <h3 style="font-family:'Syne',sans-serif;font-size:22px;font-weight:700;margin-bottom:10px;color:var(--pro)">This is a Pro tool</h3>
+        <p style="font-size:15px;color:var(--ink2);margin-bottom:24px;max-width:400px;margin-left:auto;margin-right:auto">Upgrade to CreatorKit Pro for $15/month to unlock Carousel Writer, Brand Pitch, and unlimited use of all tools.</p>
+        <a href="../pricing.html" class="btn-primary" style="background:var(--pro);box-shadow:0 4px 20px rgba(124,58,237,0.3)">Unlock with Pro — $15/mo</a>
+      </div>
+
+      <div id="toolContent">
+        <div class="tool-ui">
+          <div class="tool-input-panel">
+            <div class="panel-label">Your carousel details</div>
+            <div class="field">
+              <label for="topic">What is your carousel about?</label>
+              <textarea id="topic" placeholder="e.g. 5 morning habits that completely changed my energy levels and productivity..." rows="3"></textarea>
+            </div>
+            <div class="field">
+              <label for="niche">Your niche</label>
+              <select id="niche">
+                <option value="lifestyle">Lifestyle</option>
+                <option value="fitness & wellness">Fitness &amp; wellness</option>
+                <option value="fashion & style">Fashion &amp; style</option>
+                <option value="food & cooking">Food &amp; cooking</option>
+                <option value="travel">Travel</option>
+                <option value="beauty & skincare">Beauty &amp; skincare</option>
+                <option value="business & entrepreneurship">Business &amp; entrepreneurship</option>
+                <option value="tech & gadgets">Tech &amp; gadgets</option>
+                <option value="parenting & family">Parenting &amp; family</option>
+                <option value="mental health">Mental health</option>
+                <option value="personal finance">Personal finance</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="slideCount">Number of slides</label>
+              <select id="slideCount">
+                <option value="5">5 slides (quick &amp; punchy)</option>
+                <option value="7" selected>7 slides (recommended)</option>
+                <option value="10">10 slides (comprehensive)</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="goal">Carousel goal</label>
+              <select id="goal">
+                <option value="educate and add value">Educate &amp; add value</option>
+                <option value="tell a personal story with lessons">Personal story with lessons</option>
+                <option value="share tips or hacks">Tips / hacks list</option>
+                <option value="bust common myths">Myth-busting</option>
+                <option value="walk through a step-by-step tutorial">Step-by-step tutorial</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="audience">Target audience (optional)</label>
+              <input type="text" id="audience" placeholder="e.g. Busy parents trying to stay healthy">
+            </div>
+            <div class="uses-counter" id="usesCounter">Loading...</div>
+            <button class="btn-generate" id="generateBtn" onclick="generate()">Write carousel script</button>
+            <div class="limit-banner" id="limitBanner">
+              You've used all 3 free generations today. <a href="../pricing.html">Upgrade to Pro</a> for unlimited use.
+            </div>
+          </div>
+          <div class="tool-output-panel">
+            <div class="panel-label">Your carousel script</div>
+            <div id="outputArea">
+              <div class="output-empty">
+                <div class="output-icon">🎠</div>
+                <p>Your slide-by-slide script will appear here,<br>ready to design in Canva or Figma.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="next-tools">
+        <h3>Try these next</h3>
+        <div class="next-tools-grid">
+          <a href="caption-generator.html" class="next-tool-link"><span class="nt-icon">✍️</span> Write the caption</a>
+          <a href="hashtag-generator.html" class="next-tool-link"><span class="nt-icon">#</span> Find hashtags</a>
+          <a href="hook-writer.html" class="next-tool-link"><span class="nt-icon">⚡</span> Sharpen the hook</a>
+          <a href="content-ideas.html" class="next-tool-link"><span class="nt-icon">💡</span> More content ideas</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <a href="../index.html" class="logo">creator<span>kit</span></a>
+        <div class="footer-links"><a href="../index.html#tools">Tools</a><a href="../pricing.html">Pricing</a></div>
+        <span class="footer-copy">Built for creators.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    var TOOL_NAME = 'carousel-writer';
+    document.addEventListener('DOMContentLoaded', function() {
+      if (!CreatorKit.isPro()) {
+        document.getElementById('proGate').style.display = 'block';
+        document.getElementById('toolContent').style.display = 'none';
+      } else {
+        CreatorKit.updateUsesDisplay(TOOL_NAME); checkLimit();
+      }
+    });
+    function checkLimit() {
+      var btn = document.getElementById('generateBtn'), banner = document.getElementById('limitBanner');
+      if (!CreatorKit.isPro() && CreatorKit.getUsesLeft(TOOL_NAME) === 0) { btn.disabled = true; banner.style.display = 'block'; }
+    }
+    async function generate() {
+      var topic = document.getElementById('topic').value.trim();
+      if (!topic) { alert('Please describe your carousel topic first.'); return; }
+      var niche = document.getElementById('niche').value;
+      var slideCount = document.getElementById('slideCount').value;
+      var goal = document.getElementById('goal').value;
+      var audience = document.getElementById('audience').value.trim();
+      var btn = document.getElementById('generateBtn'), outputArea = document.getElementById('outputArea');
+      btn.disabled = true; btn.textContent = 'Writing script...';
+      outputArea.innerHTML = '<div class="loading-bar"></div>';
+      var lastSlide = parseInt(slideCount);
+      var prompt = 'You are an expert Instagram carousel creator.\n\nWrite a complete ' + slideCount + '-slide Instagram carousel script.\n\nTopic: ' + topic + '\nNiche: ' + niche + '\nGoal: ' + goal + '\n' + (audience ? 'Audience: ' + audience + '\n' : '') + '\nStructure:\n- Slide 1 (COVER): Bold curiosity-driving title. Most important slide.\n- Slides 2–' + (lastSlide-1) + ': One clear point per slide, short and punchy.\n- Slide ' + lastSlide + ' (CTA): Strong call to action.\n\nFor each slide provide:\n- HEADLINE (5-8 words max)\n- BODY (2-4 short sentences)\n- DESIGN NOTE (brief visual tip)\n\nFormat EXACTLY:\n\nSLIDE 1 — COVER\nHeadline: [text]\nBody: [text]\nDesign note: [tip]\n\nSLIDE 2\nHeadline: [text]\nBody: [text]\nDesign note: [tip]\n\n...(continue for all ' + slideCount + ' slides)\n\nCAPTION\n[80-120 word caption with hook and CTA to swipe]';
+      try {
+        var result = await CreatorKit.callAI(prompt);
+        if (!CreatorKit.isPro()) { CreatorKit.recordUse(TOOL_NAME); CreatorKit.updateUsesDisplay(TOOL_NAME); }
+        outputArea.innerHTML = '';
+        var slides = [], currentSlide = null, captionText = '', inCaption = false;
+        result.split('\n').map(function(l){return l.trim();}).filter(Boolean).forEach(function(line) {
+          if (/^SLIDE \d+/i.test(line)) {
+            if (currentSlide) slides.push(currentSlide);
+            currentSlide = {title:line, headline:'', body:'', design:''};
+            inCaption = false;
+          } else if (/^CAPTION$/i.test(line)) {
+            if (currentSlide) slides.push(currentSlide);
+            currentSlide = null; inCaption = true;
+          } else if (currentSlide) {
+            if (/^Headline:/i.test(line)) currentSlide.headline = line.replace(/^Headline:/i,'').trim();
+            else if (/^Body:/i.test(line)) currentSlide.body = line.replace(/^Body:/i,'').trim();
+            else if (/^Design note:/i.test(line)) currentSlide.design = line.replace(/^Design note:/i,'').trim();
+          } else if (inCaption) { captionText += (captionText ? '\n' : '') + line; }
+        });
+        slides.forEach(function(slide, i) {
+          var d = document.createElement('div'); d.className = 'slide-card'; d.style.animationDelay = (i*0.06)+'s';
+          var slideType = i===0 ? 'Cover' : i===slides.length-1 ? 'CTA' : 'Slide '+(i+1);
+          d.innerHTML = '<div style="display:flex;align-items:center;margin-bottom:10px"><div class="slide-num">'+(i+1)+'</div><span style="font-size:11px;font-weight:600;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em">'+slideType+'</span></div>'
+            + (slide.headline ? '<div style="font-size:13px;font-weight:600;color:var(--ink);margin-bottom:6px">Headline: "'+slide.headline+'"</div>' : '')
+            + (slide.body ? '<div style="font-size:13px;color:var(--ink2);line-height:1.6;margin-bottom:6px">'+slide.body+'</div>' : '')
+            + (slide.design ? '<div style="font-size:11px;color:var(--ink3);font-style:italic">Design: '+slide.design+'</div>' : '')
+            + '<button class="copy-btn" onclick="CreatorKit.copyText(\'' + (slide.headline+' '+slide.body).replace(/'/g,"\\'") + '\', this)">Copy</button>';
+          outputArea.appendChild(d);
+        });
+        if (captionText) {
+          var cd = document.createElement('div'); cd.className = 'result-item'; cd.style.animationDelay = (slides.length*0.06)+'s';
+          cd.innerHTML = '<div class="result-label">Caption for this carousel</div><div class="result-text">'+captionText+'</div><button class="copy-btn" onclick="CreatorKit.copyText(this.previousElementSibling.textContent, this)">Copy caption</button>';
+          outputArea.appendChild(cd);
+        }
+        var allText = slides.map(function(s,i){return 'SLIDE '+(i+1)+':\nHeadline: '+s.headline+'\n'+s.body;}).join('\n\n') + (captionText ? '\n\nCAPTION:\n'+captionText : '');
+        var copyDiv = document.createElement('div'); copyDiv.style = 'text-align:center;margin-top:8px';
+        copyDiv.innerHTML = '<button class="btn-generate" style="max-width:260px;margin:0 auto" onclick="CreatorKit.copyText(this.dataset.text, this)" data-text="">Copy entire script</button>';
+        copyDiv.querySelector('button').dataset.text = allText;
+        outputArea.appendChild(copyDiv);
+      } catch(err) {
+        outputArea.innerHTML = '<div style="color:red;font-size:14px;padding:16px">Error: ' + err.message + '</div>';
+      } finally { btn.disabled = false; btn.textContent = 'Write carousel script'; checkLimit(); }
+    }
+  </script>
+</body>
+</html>

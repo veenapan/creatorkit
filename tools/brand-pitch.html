@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brand Pitch Email Writer — CreatorKit Pro</title>
+  <meta name="description" content="Write a professional brand pitch email in seconds. AI-powered and customized to your stats. CreatorKit Pro.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="logo">creator<span>kit</span></a>
+      <div class="nav-links">
+        <a href="../index.html#tools">All Tools</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../pricing.html" class="btn-nav">Go Pro — $15/mo</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="tool-page">
+    <div class="container">
+      <div class="tool-page-header">
+        <a href="../index.html" class="back-link">← All tools</a>
+        <div class="tool-tag pro">Pro tool</div>
+        <h1>Brand Pitch Email Writer</h1>
+        <p>Write a polished, professional pitch email to any brand in seconds — customized to your niche, stats, and the specific brand you're targeting.</p>
+      </div>
+
+      <div id="proGate" style="display:none;background:var(--pro-light);border:1px solid rgba(124,58,237,0.2);border-radius:var(--r);padding:40px;text-align:center;margin-bottom:32px">
+        <div style="font-size:40px;margin-bottom:12px">💼</div>
+        <h3 style="font-family:'Syne',sans-serif;font-size:22px;font-weight:700;margin-bottom:10px;color:var(--pro)">This is a Pro tool</h3>
+        <p style="font-size:15px;color:var(--ink2);margin-bottom:24px;max-width:400px;margin-left:auto;margin-right:auto">Upgrade to CreatorKit Pro for $15/month to unlock Brand Pitch, Carousel Writer, and unlimited use of all tools.</p>
+        <a href="../pricing.html" class="btn-primary" style="background:var(--pro);box-shadow:0 4px 20px rgba(124,58,237,0.3)">Unlock with Pro — $15/mo</a>
+      </div>
+
+      <div id="toolContent">
+        <div class="tool-ui">
+          <div class="tool-input-panel">
+            <div class="panel-label">Your details</div>
+            <div class="field">
+              <label for="yourName">Your name / handle</label>
+              <input type="text" id="yourName" placeholder="e.g. Sarah or @sarahfitlife">
+            </div>
+            <div class="field">
+              <label for="niche">Your niche</label>
+              <select id="niche">
+                <option value="lifestyle">Lifestyle</option>
+                <option value="fitness & wellness">Fitness &amp; wellness</option>
+                <option value="fashion & style">Fashion &amp; style</option>
+                <option value="food & cooking">Food &amp; cooking</option>
+                <option value="travel">Travel</option>
+                <option value="beauty & skincare">Beauty &amp; skincare</option>
+                <option value="business & entrepreneurship">Business &amp; entrepreneurship</option>
+                <option value="tech & gadgets">Tech &amp; gadgets</option>
+                <option value="parenting & family">Parenting &amp; family</option>
+                <option value="mental health">Mental health</option>
+                <option value="personal finance">Personal finance</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="followers">Your follower count</label>
+              <input type="text" id="followers" placeholder="e.g. 24,500">
+            </div>
+            <div class="field">
+              <label for="er">Your average engagement rate</label>
+              <input type="text" id="er" placeholder="e.g. 4.2%">
+            </div>
+            <div class="field">
+              <label for="brandName">Brand you're pitching</label>
+              <input type="text" id="brandName" placeholder="e.g. Glossier, Nike, a local skincare brand">
+            </div>
+            <div class="field">
+              <label for="brandProduct">Their product you want to feature</label>
+              <input type="text" id="brandProduct" placeholder="e.g. Their new SPF moisturizer range">
+            </div>
+            <div class="field">
+              <label for="deliverables">What you're offering</label>
+              <select id="deliverables">
+                <option value="1 Instagram post + 3 stories">1 post + 3 stories</option>
+                <option value="2 Instagram posts + 5 stories">2 posts + 5 stories</option>
+                <option value="1 Instagram Reel">1 Reel</option>
+                <option value="1 Instagram Reel + 3 stories">1 Reel + 3 stories</option>
+                <option value="a dedicated story series (5 stories)">Story series (5 stories)</option>
+                <option value="a full campaign (posts + reels + stories)">Full campaign package</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="tone">Email tone</label>
+              <select id="tone">
+                <option value="professional and confident">Professional &amp; confident</option>
+                <option value="warm and personable">Warm &amp; personable</option>
+                <option value="brief and direct">Brief &amp; direct</option>
+              </select>
+            </div>
+            <div class="uses-counter" id="usesCounter">Loading...</div>
+            <button class="btn-generate" id="generateBtn" onclick="generate()">Write my pitch email</button>
+            <div class="limit-banner" id="limitBanner">
+              You've used all 3 free generations today. <a href="../pricing.html">Upgrade to Pro</a> for unlimited use.
+            </div>
+          </div>
+          <div class="tool-output-panel">
+            <div class="panel-label">Your pitch email</div>
+            <div id="outputArea">
+              <div class="output-empty">
+                <div class="output-icon">💼</div>
+                <p>Your professional pitch email<br>will appear here, ready to send.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="next-tools">
+        <h3>Try these next</h3>
+        <div class="next-tools-grid">
+          <a href="engagement-calculator.html" class="next-tool-link"><span class="nt-icon">📈</span> Check your ER first</a>
+          <a href="carousel-writer.html" class="next-tool-link"><span class="nt-icon">🎠</span> Carousel Writer</a>
+          <a href="caption-generator.html" class="next-tool-link"><span class="nt-icon">✍️</span> Caption Generator</a>
+          <a href="content-ideas.html" class="next-tool-link"><span class="nt-icon">💡</span> Content Ideas</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <a href="../index.html" class="logo">creator<span>kit</span></a>
+        <div class="footer-links"><a href="../index.html#tools">Tools</a><a href="../pricing.html">Pricing</a></div>
+        <span class="footer-copy">Built for creators.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    var TOOL_NAME = 'brand-pitch';
+    document.addEventListener('DOMContentLoaded', function() {
+      if (!CreatorKit.isPro()) {
+        document.getElementById('proGate').style.display = 'block';
+        document.getElementById('toolContent').style.display = 'none';
+      } else {
+        CreatorKit.updateUsesDisplay(TOOL_NAME); checkLimit();
+      }
+    });
+    function checkLimit() {
+      var btn = document.getElementById('generateBtn'), banner = document.getElementById('limitBanner');
+      if (!CreatorKit.isPro() && CreatorKit.getUsesLeft(TOOL_NAME) === 0) { btn.disabled = true; banner.style.display = 'block'; }
+    }
+    async function generate() {
+      var yourName = document.getElementById('yourName').value.trim() || 'a content creator';
+      var niche = document.getElementById('niche').value;
+      var followers = document.getElementById('followers').value.trim();
+      var er = document.getElementById('er').value.trim();
+      var brandName = document.getElementById('brandName').value.trim();
+      var brandProduct = document.getElementById('brandProduct').value.trim();
+      var deliverables = document.getElementById('deliverables').value;
+      var tone = document.getElementById('tone').value;
+      if (!brandName) { alert("Please enter the brand name you're pitching."); return; }
+      var btn = document.getElementById('generateBtn'), outputArea = document.getElementById('outputArea');
+      btn.disabled = true; btn.textContent = 'Writing your pitch...';
+      outputArea.innerHTML = '<div class="loading-bar"></div>';
+      var prompt = 'You are an expert influencer marketing consultant who writes pitch emails that actually get responses.\n\nWrite a ' + tone + ' pitch email from an Instagram creator to a brand.\n\nCreator: ' + yourName + '\nNiche: ' + niche + '\nFollowers: ' + (followers || 'a strong following') + '\n' + (er ? 'Engagement rate: ' + er + '\n' : '') + 'Brand: ' + brandName + '\nProduct: ' + (brandProduct || 'their products') + '\nDeliverables: ' + deliverables + '\n\nWrite a complete pitch including subject line, opening showing brand knowledge, creator intro with stats, audience alignment, deliverables, confident close.\n\nRules:\n- Under 250 words\n- Lead with value to the brand\n- Be specific, not generic\n- No clichés like "I would love to collaborate"\n\nFormat:\n\nSUBJECT: [subject line]\n\n[email body]';
+      try {
+        var result = await CreatorKit.callAI(prompt);
+        if (!CreatorKit.isPro()) { CreatorKit.recordUse(TOOL_NAME); CreatorKit.updateUsesDisplay(TOOL_NAME); }
+        outputArea.innerHTML = '';
+        var lines = result.split('\n');
+        var subject = '', bodyLines = [], pastSubject = false;
+        lines.forEach(function(line) {
+          if (line.trim().startsWith('SUBJECT:')) { subject = line.replace('SUBJECT:','').trim(); pastSubject = true; }
+          else if (pastSubject) { bodyLines.push(line); }
+        });
+        var body = bodyLines.join('\n').trim() || result;
+        var d = document.createElement('div'); d.className = 'result-item';
+        d.innerHTML = (subject ? '<div style="background:var(--cream);border:1px solid var(--border-med);border-radius:var(--r-sm);padding:10px 14px;margin-bottom:14px"><div style="font-size:11px;font-weight:600;color:var(--ink3);text-transform:uppercase;letter-spacing:.08em">Subject line</div><div style="font-size:14px;font-weight:500;margin-top:4px">'+subject+'</div><button class="copy-btn" style="position:static;margin-top:6px;display:inline-block" onclick="CreatorKit.copyText(\''+subject.replace(/'/g,"\\'")+'\'  , this)">Copy subject</button></div>' : '')
+          + '<div class="result-label">Email body</div><div class="result-text" style="white-space:pre-wrap">'+body+'</div><button class="copy-btn" onclick="CreatorKit.copyText(this.previousElementSibling.textContent, this)">Copy email</button>';
+        outputArea.appendChild(d);
+      } catch(err) {
+        outputArea.innerHTML = '<div style="color:red;font-size:14px;padding:16px">Error: ' + err.message + '</div>';
+      } finally { btn.disabled = false; btn.textContent = 'Write my pitch email'; checkLimit(); }
+    }
+  </script>
+</body>
+</html>

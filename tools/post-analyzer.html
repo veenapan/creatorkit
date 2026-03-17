@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Why Didn't My Instagram Post Perform? — CreatorKit</title>
+  <meta name="description" content="Get an honest AI diagnosis of why your Instagram post underperformed. Free tool, instant results.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  <style>
+    .score-bar { height: 8px; background: var(--border); border-radius: 4px; margin: 6px 0 14px; overflow: hidden; }
+    .score-fill { height: 100%; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="logo">creator<span>kit</span></a>
+      <div class="nav-links">
+        <a href="../index.html#tools">All Tools</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../pricing.html" class="btn-nav">Go Pro — $15/mo</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="tool-page">
+    <div class="container">
+      <div class="tool-page-header">
+        <a href="../index.html" class="back-link">← All tools</a>
+        <div class="tool-tag" style="background:#e0f2fe;color:#0891b2">Viral tool</div>
+        <h1>"Why Didn't It Perform?" Analyzer</h1>
+        <p>Get an honest, specific AI diagnosis — not vague advice, but exactly what went wrong and how to fix it next time.</p>
+      </div>
+      <div class="tool-ui">
+        <div class="tool-input-panel">
+          <div class="panel-label">Your post details</div>
+          <div class="field">
+            <label for="caption">Your caption (paste the full text)</label>
+            <textarea id="caption" placeholder="Paste your exact caption here..." rows="5"></textarea>
+          </div>
+          <div class="field">
+            <label for="hashtags">Hashtags used (if separate)</label>
+            <textarea id="hashtags" placeholder="#hashtag1 #hashtag2 ..." rows="2"></textarea>
+          </div>
+          <div class="field">
+            <label for="postType">Post type</label>
+            <select id="postType">
+              <option value="single photo">Single photo</option>
+              <option value="carousel (multiple photos)">Carousel</option>
+              <option value="reel">Reel</option>
+              <option value="story">Story</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="postTime">When did you post?</label>
+            <select id="postTime">
+              <option value="morning (6am-10am)">Morning (6am–10am)</option>
+              <option value="midday (10am-2pm)">Midday (10am–2pm)</option>
+              <option value="afternoon (2pm-6pm)">Afternoon (2pm–6pm)</option>
+              <option value="evening (6pm-10pm)">Evening (6pm–10pm)</option>
+              <option value="late night (10pm+)">Late night (10pm+)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="niche">Your niche</label>
+            <select id="niche">
+              <option value="lifestyle">Lifestyle</option>
+              <option value="fitness">Fitness &amp; wellness</option>
+              <option value="fashion">Fashion &amp; style</option>
+              <option value="food">Food &amp; cooking</option>
+              <option value="travel">Travel</option>
+              <option value="beauty">Beauty &amp; skincare</option>
+              <option value="business">Business</option>
+              <option value="tech">Tech</option>
+              <option value="parenting">Parenting</option>
+              <option value="mental health">Mental health</option>
+              <option value="finance">Personal finance</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="followers">Your follower count</label>
+            <select id="followers">
+              <option value="under 1,000">Under 1,000</option>
+              <option value="1,000-5,000">1,000–5,000</option>
+              <option value="5,000-20,000">5,000–20,000</option>
+              <option value="20,000-100,000">20,000–100,000</option>
+              <option value="100,000+">100,000+</option>
+            </select>
+          </div>
+          <div class="uses-counter" id="usesCounter">Loading...</div>
+          <button class="btn-generate" id="generateBtn" onclick="generate()">Diagnose my post</button>
+          <div class="limit-banner" id="limitBanner">
+            You've used all 3 free analyses today. <a href="../pricing.html">Upgrade to Pro</a> for unlimited use.
+          </div>
+        </div>
+        <div class="tool-output-panel">
+          <div class="panel-label">Your diagnosis</div>
+          <div id="outputArea">
+            <div class="output-empty">
+              <div class="output-icon">🔎</div>
+              <p>Fill in your post details and get an honest<br>breakdown of what went wrong — and how to fix it.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="next-tools">
+        <h3>Fix it with these tools</h3>
+        <div class="next-tools-grid">
+          <a href="caption-generator.html" class="next-tool-link"><span class="nt-icon">✍️</span> Rewrite your caption</a>
+          <a href="hook-writer.html" class="next-tool-link"><span class="nt-icon">⚡</span> Write a better hook</a>
+          <a href="hashtag-generator.html" class="next-tool-link"><span class="nt-icon">#</span> Better hashtags</a>
+          <a href="content-ideas.html" class="next-tool-link"><span class="nt-icon">💡</span> Fresh content ideas</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <a href="../index.html" class="logo">creator<span>kit</span></a>
+        <div class="footer-links"><a href="../index.html#tools">Tools</a><a href="../pricing.html">Pricing</a></div>
+        <span class="footer-copy">Built for creators.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    var TOOL_NAME = 'post-analyzer';
+    document.addEventListener('DOMContentLoaded', function() { CreatorKit.updateUsesDisplay(TOOL_NAME); checkLimit(); });
+    function checkLimit() {
+      var btn = document.getElementById('generateBtn'), banner = document.getElementById('limitBanner');
+      if (!CreatorKit.isPro() && CreatorKit.getUsesLeft(TOOL_NAME) === 0) { btn.disabled = true; banner.style.display = 'block'; }
+    }
+    async function generate() {
+      var caption = document.getElementById('caption').value.trim();
+      if (!caption) { alert('Please paste your caption first.'); return; }
+      var hashtags = document.getElementById('hashtags').value.trim();
+      var postType = document.getElementById('postType').value;
+      var postTime = document.getElementById('postTime').value;
+      var niche = document.getElementById('niche').value;
+      var followers = document.getElementById('followers').value;
+      var btn = document.getElementById('generateBtn'), outputArea = document.getElementById('outputArea');
+      btn.disabled = true; btn.textContent = 'Diagnosing...';
+      outputArea.innerHTML = '<div class="loading-bar"></div>';
+      var prompt = 'You are a brutally honest Instagram growth expert.\n\nAnalyze why this post underperformed:\n\nCAPTION: ' + caption + '\n' + (hashtags ? 'HASHTAGS: ' + hashtags + '\n' : '') + 'POST TYPE: ' + postType + '\nTIME: ' + postTime + '\nNICHE: ' + niche + '\nFOLLOWERS: ' + followers + '\n\nGive a specific diagnosis. Format EXACTLY:\n\nOVERALL SCORE\n[score out of 10 and one sentence summary]\n\nHOOK STRENGTH: [1-10]\n[2-3 sentences]\n\nCAPTION QUALITY: [1-10]\n[2-3 sentences]\n\nHASHTAG STRATEGY: [1-10]\n[2-3 sentences]\n\nTIMING: [1-10]\n[1-2 sentences]\n\nTOP 3 REASONS IT UNDERPERFORMED\n1. [specific reason]\n2. [specific reason]\n3. [specific reason]\n\n3 THINGS TO DO DIFFERENTLY NEXT TIME\n1. [specific fix]\n2. [specific fix]\n3. [specific fix]';
+      try {
+        var result = await CreatorKit.callAI(prompt);
+        if (!CreatorKit.isPro()) { CreatorKit.recordUse(TOOL_NAME); CreatorKit.updateUsesDisplay(TOOL_NAME); }
+        outputArea.innerHTML = '';
+        // Parse scores for visual display
+        var scores = {};
+        var scoreColors = {'HOOK STRENGTH':'#e8440a','CAPTION QUALITY':'#0891b2','HASHTAG STRATEGY':'#7c3aed','TIMING':'#059669'};
+        result.split('\n').forEach(function(line) {
+          var m = line.trim().match(/^(HOOK STRENGTH|CAPTION QUALITY|HASHTAG STRATEGY|TIMING):\s*(\d+)/i);
+          if (m) scores[m[1].toUpperCase()] = parseInt(m[2]);
+        });
+        if (Object.keys(scores).length) {
+          var sd = document.createElement('div'); sd.className = 'result-item';
+          var scoreHtml = '<div class="result-label">Scores at a glance</div>';
+          Object.entries(scores).forEach(function(entry) {
+            var k = entry[0], v = entry[1], c = scoreColors[k];
+            scoreHtml += '<div style="margin-bottom:10px"><div style="display:flex;justify-content:space-between"><span style="font-size:13px;font-weight:500">' + k.charAt(0)+k.slice(1).toLowerCase() + '</span><span style="font-size:13px;font-weight:700;color:'+c+'">'+v+'/10</span></div><div class="score-bar"><div class="score-fill" style="width:'+(v*10)+'%;background:'+c+'"></div></div></div>';
+          });
+          sd.innerHTML = scoreHtml;
+          outputArea.appendChild(sd);
+        }
+        // Full text
+        var fd = document.createElement('div'); fd.className = 'result-item'; fd.style.animationDelay = '0.1s';
+        var lines = result.split('\n').map(function(l){return l.trim();}).filter(Boolean);
+        var html = '', listItems = [], inList = false;
+        var sectionHeaders = /^(OVERALL SCORE|TOP 3 REASONS|3 THINGS TO DO|HOOK STRENGTH|CAPTION QUALITY|HASHTAG STRATEGY|TIMING)/i;
+        lines.forEach(function(line) {
+          if (/^(TOP 3 REASONS)/i.test(line)) {
+            if (inList && listItems.length) { html += '<ol style="padding-left:18px">'+listItems.map(function(i){return '<li style="font-size:13px;color:var(--ink2);padding:4px 0">'+i+'</li>';}).join('')+'</ol>'; listItems = []; }
+            inList = true; html += '<div class="result-label" style="margin-top:12px;color:#e8440a">Top 3 reasons it underperformed</div>';
+          } else if (/^3 THINGS TO DO/i.test(line)) {
+            if (inList && listItems.length) { html += '<ol style="padding-left:18px">'+listItems.map(function(i){return '<li style="font-size:13px;color:var(--ink2);padding:4px 0">'+i+'</li>';}).join('')+'</ol>'; listItems = []; }
+            inList = true; html += '<div class="result-label" style="margin-top:12px;color:#059669">Fix it next time</div>';
+          } else if (/^(HOOK STRENGTH|CAPTION QUALITY|HASHTAG STRATEGY|TIMING):/i.test(line)) {
+            html += '<div class="result-label" style="margin-top:12px">' + line.split(':')[0] + '</div>';
+            inList = false;
+          } else if (/^OVERALL SCORE$/i.test(line)) {
+            html += '<div class="result-label">Overall assessment</div>'; inList = false;
+          } else if (/^\d+\.\s/.test(line)) {
+            listItems.push(line.replace(/^\d+\.\s*/,''));
+          } else if (line && !/^\d+\/10/.test(line)) {
+            if (inList && listItems.length && !/^\d/.test(line)) {
+              html += '<ol style="padding-left:18px">'+listItems.map(function(i){return '<li style="font-size:13px;color:var(--ink2);padding:4px 0">'+i+'</li>';}).join('')+'</ol>'; listItems = []; inList = false;
+            }
+            html += '<p style="font-size:13px;color:var(--ink2);line-height:1.6;margin-bottom:6px">' + line + '</p>';
+          }
+        });
+        if (listItems.length) { html += '<ol style="padding-left:18px">'+listItems.map(function(i){return '<li style="font-size:13px;color:var(--ink2);padding:4px 0">'+i+'</li>';}).join('')+'</ol>'; }
+        fd.innerHTML = html + '<button class="copy-btn" onclick="CreatorKit.copyText(this.closest(\'.result-item\').innerText, this)">Copy</button>';
+        outputArea.appendChild(fd);
+      } catch(err) {
+        outputArea.innerHTML = '<div style="color:red;font-size:14px;padding:16px">Error: ' + err.message + '</div>';
+      } finally { btn.disabled = false; btn.textContent = 'Diagnose my post'; checkLimit(); }
+    }
+  </script>
+</body>
+</html>
