@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing — CreatorKit</title>
+  <meta name="description" content="CreatorKit is free to start. Upgrade to Pro for $15/month for unlimited access to all AI creator tools.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">creator<span>kit</span></a>
+      <div class="nav-links">
+        <a href="index.html#tools">Tools</a>
+        <a href="pricing.html">Pricing</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="pricing-section">
+    <div class="container">
+      <div class="badge">Simple pricing</div>
+      <h1>Free to start.<br>Pro to scale.</h1>
+      <p class="sub">No tricks. No per-use fees. Flat monthly access.</p>
+
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="section-label">Free</div>
+          <div class="price">$0</div>
+          <div class="price-period">forever</div>
+          <ul class="pricing-features">
+            <li>3 uses per tool per day</li>
+            <li>6 free tools</li>
+            <li>No signup needed</li>
+            <li class="muted">Pro-only tools locked</li>
+            <li class="muted">Ads shown</li>
+          </ul>
+          <a href="index.html#tools" class="btn-primary" style="display:block;text-align:center">Start for free</a>
+        </div>
+
+        <div class="pricing-card featured">
+          <div class="section-label light">Pro</div>
+          <div class="price">$15</div>
+          <div class="price-period">per month · cancel anytime</div>
+          <ul class="pricing-features">
+            <li>Unlimited uses on all tools</li>
+            <li>All 8 tools including Pro-only</li>
+            <li>Brand Pitch Email Writer</li>
+            <li>Carousel Script Writer</li>
+            <li>Zero ads, ever</li>
+            <li>New tools added regularly</li>
+          </ul>
+          <!-- Replace YOUR_STRIPE_LINK with your actual Stripe payment link -->
+          <a href="https://buy.stripe.com/YOUR_STRIPE_LINK" class="btn-primary light" style="display:block;text-align:center">Get Pro access →</a>
+          <p style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:12px;text-align:center">Secure payment via Stripe</p>
+        </div>
+      </div>
+
+      <div style="margin-top:40px;text-align:center">
+        <p style="font-size:14px;color:var(--ink3)">Already have a Pro key? <a href="#" onclick="activatePro()" style="color:var(--accent)">Enter it here</a></p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <a href="index.html" class="logo">creator<span>kit</span></a>
+        <div class="footer-links"><a href="index.html#tools">Tools</a></div>
+        <span class="footer-copy">Built for creators.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    function activatePro() {
+      var key = prompt('Enter your Pro key (from your Stripe receipt email):');
+      if (key && key.length > 10) {
+        localStorage.setItem('ck_pro_key', key);
+        alert('Pro activated! You now have unlimited access.');
+        window.location.href = 'index.html';
+      }
+    }
+  </script>
+</body>
+</html>
